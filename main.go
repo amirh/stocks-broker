@@ -34,6 +34,8 @@ func (s *Server) SetLimitOrder(ctx context.Context, order *pb.LimitOrder) (*pb.O
 	}, nil
 }
 
+var grpcServer *grpc.Server
+
 func main() {
 	// Start the gRPC server
 	port := 50051
@@ -42,7 +44,7 @@ func main() {
 		panic(fmt.Errorf("failed to listen: %v", err))
 	}
 
-	grpcServer := grpc.NewServer()
+	grpcServer = grpc.NewServer()
 	pb.RegisterStocksBrokerServer(grpcServer, &Server{})
 
 	fmt.Printf("Starting Stocks Broker server on port %d...\n", port)
