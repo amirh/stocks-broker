@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package stocks_broker;
+
+option go_package = "github.com/amirh/stocks-broker/proto";
+
+
+service StocksBroker {
+    rpc SetLimitOrder(LimitOrder) returns (OrderStatus);
+}
+
+message LimitOrder {
+    string symbol = 1;
+    double price = 2;
+    int32 quantity = 3;
+}
+
+message OrderStatus {
+    string orderId = 1;
+    bool executed = 2;
+}
