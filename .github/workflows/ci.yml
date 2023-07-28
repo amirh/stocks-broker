@@ -34,6 +34,7 @@ jobs:
           DOCKER_BUILDKIT: 1
 
   publish-image:
+    needs: build-and-test
     runs-on: ubuntu-latest
     steps:
       - name: Set up Docker Buildx
@@ -43,11 +44,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: amirha/example-stocks-broker
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          push: true
-          tags: amirha/example-stocks-broker:latest
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
   produce-sbom:
     needs: build-and-test
