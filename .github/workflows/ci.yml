@@ -4,13 +4,11 @@ on:
   push:
     branches:
       - main
+    tags:
+      - '*.*.*'
   pull_request:
     branches:
       - main
-  # Trigger the workflow for all tags with the format "MAJOR.MINOR.PATCH" (e.g., "1.2.3")
-  # Note: You may want to adjust this pattern to match your desired tag format.
-  tags:
-    - '*.*.*'
 
 jobs:
   build-and-test:
