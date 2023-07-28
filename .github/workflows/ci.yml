@@ -72,7 +72,6 @@ jobs:
       - name: Generate SBOM
         run: cyclonedx-gomod app -json -output sbom.json -licenses -main .
 
-      # Save the SBOM as an artifact
       - name: Upload SBOM artifact
         uses: actions/upload-artifact@v2
         with:
