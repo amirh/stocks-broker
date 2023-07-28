@@ -47,7 +47,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: amirh/example-stocks-broker:latest
+          tags: amirha/example-stocks-broker:latest
 
   produce-sbom:
     needs: build-and-test
