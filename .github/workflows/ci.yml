@@ -59,8 +59,8 @@ jobs:
       - name: Tag and Push Docker image with version tag
         run: |
           VERSION=${GITHUB_REF#refs/tags/} # Extract the tag name for versioning
-          docker tag stocks-broker:$VERSION amirh/stocks-broker:$VERSION
-          docker push amirh/stocks-broker:$VERSION
+          docker tag stocks-broker:$VERSION amirh/example-stocks-broker:$VERSION
+          docker push amirh/example-stocks-broker:$VERSION
         env:
           DOCKER_CLI_ACI=1
 
