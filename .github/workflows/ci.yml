@@ -31,7 +31,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t stocks-broker-image .
+          docker build -t stocks-broker .
         env:
           DOCKER_BUILDKIT: 1
 
@@ -44,7 +44,7 @@ jobs:
       - name: Build Docker image
         run: |
           VERSION=${GITHUB_REF#refs/tags/} # Extract the tag name for versioning
-          docker build -t your-docker-image:$VERSION .
+          docker build -t example-stocks-broker:$VERSION .
         env:
           DOCKER_BUILDKIT: 1
 
@@ -57,7 +57,7 @@ jobs:
       - name: Tag and Push Docker image with version tag
         run: |
           VERSION=${GITHUB_REF#refs/tags/} # Extract the tag name for versioning
-          docker tag stocks-broker:$VERSION amirh/example-stocks-broker:$VERSION
+          docker tag example-stocks-broker:$VERSION amirh/example-stocks-broker:$VERSION
           docker push amirh/example-stocks-broker:$VERSION
 
   produce-sbom:
